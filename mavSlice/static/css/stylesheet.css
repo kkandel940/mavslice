@@ -1,0 +1,70 @@
+body {
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-top: 20px;
+}
+
+.nav-item{
+    text-outline: #d9181d;
+}
+.btn{
+    button-color: #d9181d;
+}
+.navbar {
+    padding-left:10px;
+    padding-right: 20px;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0px;
+    border-radius: 0;
+    color: #d9181d;
+    font-size: xx-large;
+
+}
+
+
+.body_list {
+     background-color: black;
+}
+
+h1 a {
+    color: #d9181d;
+    font-family: 'cursive';
+}
+
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    height: 450px
+}
+.row {
+    padding-left: 50px;
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    padding-left: 20px;
+    background-color: black;
+    height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+    background-color: #d9181d;
+    color: black;
+    padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+
+    .row.content {
+        height: auto;
+    }
+}
