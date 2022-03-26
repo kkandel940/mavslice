@@ -4,8 +4,8 @@
 {% block content %}
 
 <div>
-     <nav class="navbar navbar-expand-sm bg-light navbar-light justify-context-center" id="Deals">
-          <ul class="nav navbar-nav mm-auto">
+    <nav class="navbar navbar-expand-sm bg-light navbar-light justify-context-center" id="Deals">
+        <ul class="nav navbar-nav mm-auto">
             <li class="nav-title">
                 <b>Deals</b>
             </li>
@@ -14,130 +14,42 @@
 
 
 <div>
-Menu
+    Menu
 </div>
 
-
-
-
-    <div class="content container">
-        <!-- Example row of columns using cards for alignment
+<div class="content container">
+    <!-- Example row of columns using cards for alignment
              The value of 'col-md-x' for all columns in the row must add up to 12
              This page has 3 columns, each column uses col-md-4, for a total of 12 -->
-        <div class="row">
-            <div class="col-md-4 d-flex align-items-stretch">
-                <div class="card">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card">
 
-                    <div class="card-body">
-                        <h5 class="card-title">Pepperoni za</h5>
-                        <p class="card-text">add image here</p>
-                        <p><a class="btn btn-primary" href="{% url 'mavSlice:Cart' %}"
-                              role="button">Add to cart &raquo;</a></p>
-                    </div>
-                </div>
-            </div>
-
-           <div class="col-md-4 d-flex align-items-stretch">
-                <div class="card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Supreme za</h5>
-                        <p class="card-text">add image here</p>
-                        <p><a class="btn btn-primary" href="{% url 'mavSlice:Cart' %}"
-                              role="button">Add to cart &raquo;</a></p>
-                    </div>
-                </div>
-            </div>
-           <div class="col-md-4 d-flex align-items-stretch">
-                <div class="card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Cheese za</h5>
-                        <p class="card-text">add image here</p>
-                        <p><a class="btn btn-primary" href="{% url 'mavSlice:Cart' %}"
-                              role="button">Add to cart &raquo;</a></p>
-                    </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <h5 class="card-title">$ {{product.price}}</h5>
+                    <img class="card-text mb-2" width="100px" height="100px" src={{product.image}} />
+                    <p><a class="btn btn-primary" href="{% url 'mavSlice:Cart' %}"
+                            onclick="addCartToStorage('Pizza', 500)" role="button">Add to cart
+                            &raquo;</a>
+                    </p>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-4 d-flex align-items-stretch">
-                <div class="card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Pepperoni za</h5>
-                        <p class="card-text">add image here</p>
-                        <p><a class="btn btn-primary" href="{% url 'mavSlice:Cart' %}"
-                              role="button">Add to cart &raquo;</a></p>
-                    </div>
-                </div>
-            </div>
-
-           <div class="col-md-4 d-flex align-items-stretch">
-                <div class="card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Supreme za</h5>
-                        <p class="card-text">add image here</p>
-                        <p><a class="btn btn-primary" href="{% url 'mavSlice:Cart' %}"
-                              role="button">Add to cart &raquo;</a></p>
-                    </div>
-                </div>
-            </div>
-           <div class="col-md-4 d-flex align-items-stretch">
-                <div class="card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Cheese za</h5>
-                        <p class="card-text">add image here</p>
-                        <p><a class="btn btn-primary" href="{% url 'mavSlice:Cart' %}"
-                              role="button">Add to cart &raquo;</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 d-flex align-items-stretch">
-                <div class="card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Pepperoni za</h5>
-                        <p class="card-text">add image here</p>
-                        <p><a class="btn btn-primary" href="{% url 'mavSlice:Cart' %}"
-                              role="button">Add to cart &raquo;</a></p>
-                    </div>
-                </div>
-            </div>
-
-           <div class="col-md-4 d-flex align-items-stretch">
-                <div class="card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Supreme za</h5>
-                        <p class="card-text">add image here</p>
-                        <p><a class="btn btn-primary" href="{% url 'mavSlice:Cart' %}"
-                              role="button">Add to cart &raquo;</a></p>
-                    </div>
-                </div>
-            </div>
-           <div class="col-md-4 d-flex align-items-stretch">
-                <div class="card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Cheese za</h5>
-                        <p class="card-text">add image here</p>
-                        <p><a class="btn btn-primary" href="{% url 'mavSlice:Cart' %}"
-                              role="button">Add to cart &raquo;</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {%endfor %}
     </div>
+</div>
 
-
-
+<script>
+    function addCartToStorage(name, price) {
+        window.localStorage.setItem("cart", JSON.stringify({
+            name,
+            price
+        }))
+    }
+</script>
 
 {% endblock %}
+
 </html>

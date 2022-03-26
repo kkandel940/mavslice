@@ -1,52 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
 
 {% extends "mavSlice/base.html" %}
 
 {% block body %}
-    {% if order_price == 0 %}
-        <h1>You don't have anything in cart</h1>
-    {% else %}
-        <div class="col-12">
-            <table class="table table-sm table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">Product name</th>
-                    <th scope="col">Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% if Product %}
-                    {% for product in products %}
-                        <tr>
-                            <td>{{ product }}</td>
-                            <td>{{ product.price }} USD</td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
+<div class="col-12">
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="product_name">{{ product.name }}</td>
+                <td class="product_price">{{ product.price }} USD</td>
+            </tr>
+    </table>
+    <h4 style="text-align:center order_price">Total price: {{ order_price }} USD</h4>
+    <div class="mt-2 col-md-12"></div>
+    <div class="mt-2 col-md-12"></div>
+
+    <div style="text-align: center;">
+        <a href="{% url "" %}"><input class="btn btn-success btn-lg btn-block" type="button" value="Check Out">
+        </a>
+    </div>
+
+    <div class="mt-2 col-md-12"></div>
+    <div class="mt-2 col-md-12"></div>
+
+    <div style="text-align: center;">
+        <a href="{% url "" %}"><input class="btn-outline-danger btn-sm" type="button" value="Delete order"
+                onclick="clearCart()">
+        </a>
+    </div>
 
 
+</div>
+
+<script>
+    var orderData = JSON.parse(localStorage.getItem("cart"))
+    $(".product_name").val = orderData.name
+    $(".product_price").val = orderData.price + " USD"
+    $(".order_price").val = orderData.price + " USD"
 
 
-            </table>
-            <h4 style="text-align:center">Total price: {{ order_price }} USD</h4>
-            <div class="mt-2 col-md-12"></div>
-            <div class="mt-2 col-md-12"></div>
-
-            <div style="text-align: center;">
-                <a href="{% url "" %}"><input class="btn btn-success btn-lg btn-block" type="button" value="Check Out">
-                </a>
-            </div>
-
-            <div class="mt-2 col-md-12"></div>
-            <div class="mt-2 col-md-12"></div>
-
-            <div style="text-align: center;">
-                <a href="{% url "" %}"><input class="btn-outline-danger btn-sm" type="button" value="Delete order">
-                </a>
-            </div>
-
-
-        </div>
-
-
-    {% endif %}
+    function clearCart() {
+        localStorage.clear()
+    }
+</script>
 {% endblock %}
+
+</html>

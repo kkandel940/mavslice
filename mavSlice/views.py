@@ -66,22 +66,31 @@ def logout_view(request):
 
 
 def Menu(request):
+    context = {
+        "products": [{
+            "name": "Pizza",
+            "price": 300,
+            "image": "https://media.istockphoto.com/photos/cheesy-pepperoni-pizza-picture-id938742222"
+        }]
+    }
     return render(request, 'mavSlice/Menu.html',
-                  {'Menu': Menu})
+                 context)
 
 
 def Cart(request):
-    order_price= Decimal(calculate_cart_price(request.user))
-    context = {}
-    context.update ({"order_price": order_price})
-    context.update({"Product": Product.objects.filter(add_by=request.user).filter(already_ordered=False)})
-    return render(request, 'mavSlice/Cart.html',
-                  {'Cart': Cart})
-
+    try:
+        order_price= 0
+        context = {}
+        context.update ({"order_price": order_price})
+        context.update({"Product": Product.objects})
+        return render(request, 'mavSlice/Cart.html',
+                    {'Cart': Cart})
+    except Exception as e:
+        print(e)
 
 def calculate_cart_price(username):
     order_price = 0
-    for obj in Product.objects.filter(add_by=username).filter(already_ordered=False):
+    for obj in Product.objects.filter(name="Supreme za"):
         order_price += obj.price
     return order_price
 
