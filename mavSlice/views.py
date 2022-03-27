@@ -66,15 +66,18 @@ def logout_view(request):
 
 
 def Menu(request):
-    context = {
-        "products": [{
-            "name": "Pizza",
-            "price": 300,
-            "image": "https://media.istockphoto.com/photos/cheesy-pepperoni-pizza-picture-id938742222"
-        }]
-    }
-    return render(request, 'mavSlice/Menu.html',
+    try:
+        context = {
+            "products": [{
+                "name": "Pizza",
+                "price": 300,
+                "image": "https://media.istockphoto.com/photos/cheesy-pepperoni-pizza-picture-id938742222"
+            }]
+        }
+        return render(request, 'mavSlice/Menu.html',
                  context)
+    except Exception as e:
+        print(e)
 
 
 def Cart(request):
@@ -84,7 +87,7 @@ def Cart(request):
         context.update ({"order_price": order_price})
         context.update({"Product": Product.objects})
         return render(request, 'mavSlice/Cart.html',
-                    {'Cart': Cart})
+                    context)
     except Exception as e:
         print(e)
 

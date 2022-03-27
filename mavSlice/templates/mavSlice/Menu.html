@@ -31,7 +31,8 @@
                     <h5 class="card-title">$ {{product.price}}</h5>
                     <img class="card-text mb-2" width="100px" height="100px" src={{product.image}} />
                     <p><a class="btn btn-primary" href="{% url 'mavSlice:Cart' %}"
-                            onclick="addCartToStorage('Pizza', 500)" role="button">Add to cart
+                            onclick="addCartToStorage('{{product.name}}', '{{product.price}}')" role="button">Add to
+                            cart
                             &raquo;</a>
                     </p>
                 </div>
@@ -43,6 +44,7 @@
 
 <script>
     function addCartToStorage(name, price) {
+        console.log(name)
         window.localStorage.setItem("cart", JSON.stringify({
             name,
             price
